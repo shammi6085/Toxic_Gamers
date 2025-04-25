@@ -146,7 +146,8 @@ nav {
     position: absolute;
     top: -12px;
     right: -12px;
-    background-color: #ff4757;
+    color: #ffffff; /* Bright text */
+    background-color: #000000; /* Dark background for better contrast */
     border-radius: 60%;
     padding: 0.5px 5px;
     font-size: 14px;
@@ -676,12 +677,12 @@ h1, h2 {
 }
 
 .add-to-cart {
-    background-color: #4CAF50; 
+    background-color: #088d0c; 
     color: #fff;
 }
 
 .add-to-cart:hover {
-    background-color: #45a049; 
+    background-color: #067209; 
     transform: translateY(-2px); 
 }
 
