@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxic Gamers - Payment</title>
+    <link rel="stylesheet" href="payment.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="./logo.png" alt="Gaming Logo">
+            </a>
+            <span class="website-name">Toxic Gamers</span>
+        </div>
+        <h1>Payment Details</h1>
+        <a href="cart.html" class="back-to-cart"><i class="fas fa-arrow-left"></i> Back to Cart</a>
+    </header>
+
+    <main class="payment-layout">
+        <section class="customer-details">
+            <h2>Customer Information</h2>
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="address">Shipping Address</label>
+                    <textarea id="address" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="city">City</label>
+                    <input type="text" id="city" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="zip">ZIP Code</label>
+                    <input type="text" id="zip" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <select id="country" class="styled-select" required>
+                        <option value="">Select Country</option>
+                        <option value="SL">Sri Lanka</option>
+                        <option value="US">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="CA">Canada</option>
+                        <option value="AU">Australia</option>
+                    </select>
+                </div>
+
+                <h2>Payment Information</h2>
+                
+                <div class="form-group">
+                    <label for="cardName">Name on Card</label>
+                    <input type="text" id="cardName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" required>
+                </div>
+                
+                <div class="form-group-row">
+                    <div class="form-group">
+                        <label for="expiry">Expiry Date</label>
+                        <input type="text" id="expiry" placeholder="MM/YY" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" required>
+                    </div>
+                </div>
+                
+                <button type="submit" id="payButton">Pay Now</button>
+            </form>
+        </section>
+
+        <section class="order-review">
+            <h2>Order Review</h2>
+            <div id="orderReview"></div>
+        </section>
+
+        <div id="thankYouMessage" class="hidden">
+            <h2>Thank You for Your Purchase!</h2>
+            <p>Your order has been placed successfully.</p>
+            <p id="deliveryDate"></p>
+            <p>An email confirmation has been sent to <span id="confirmationEmail"></span>.</p>
+            <a href="index.html" class="back-to-shop">Back to Shop</a>
+        </div>
+    </main>
+
+    <!-- Footer Section-->
+    <footer>
+        <div class="footer-content">
+            <!-- Left Side: Sections -->
+            <div class="footer-sections">
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>Email: toxicgamers@gmail.com</li>
+                        <li>Phone: +94 (81) 999 9999</li>
+                        <li>Address: 123 ,KCC,Kandy.</li>
+                    </ul>
+                </div>
+    
+                <!-- Sitemap -->
+                <div class="footer-section">
+                    <h3>Sitemap</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="upcoming.html">Upcoming Games</a></li>
+                        <li><a href="accessories.html">Consoles</a></li>
+                        <li><a href="pca.html">Gaming Peripherals</a></li>
+                        <li><a href="products.html">Computer Parts</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="queries.html">Queries & FAQ</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Legal -->
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Follow Us On -->
+                <div class="footer-section">
+                    <h3>Follow Us On</h3>
+                    <ul class="social-links">
+                        <li><a href="#"><img src="./fb.png" alt="Facebook"></a></li>
+                        <li><a href="#"><img src="./Insta.png" alt="Instagram"></a></li>
+                        <li><a href="#"><img src="./x.png" alt="X"></a></li>
+                        <li><a href="#"><img src="./linkedin.png" alt="Linkedin"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Footer Logo and Introduction -->
+            <div class="footer-logo">
+                 <div class="logo">
+                    <a href="index.html">
+                        <img src="./logo.png" alt="Gaming Logo">
+                    </a>
+                   <span class="website-name1">Toxic Gamers</span>
+                 </div>
+                   <p class="footer-intro">Your ultimate destination for the latest games, consoles, and accessories. Join the gaming revolution!</p>
+            </div>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Toxic Gamers. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="payment.js"></script>
+</body>
+</html>

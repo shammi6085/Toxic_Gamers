@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxic Gamers - Products</title>
+    <link rel="stylesheet" href="./products.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="./logo.png" alt="Gaming Logo">
+            </a>
+            <span class="website-name">Toxic Gamers</span>
+        </div>
+        
+        <!-- Hamburger Button -->
+        <button class="hamburger" aria-label="Toggle navigation">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    
+        <!-- Navigation Links -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="aboutus.html#our-story">Our Story</a></li>
+                        <li><a href="aboutus.html#contact-us">Contact Us</a></li>
+                        <li><a href="aboutus.html#store-info">Store Info</a></li>
+                    </ul>
+                </li>
+                <li><a href="upcoming.html">Upcoming Games</a></li>
+                <li class="dropdown">
+                    <a href="#">Accessories</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="accessories.html#">Consoles</a></li>
+                        <li><a href="pca.html">Gaming Peripherals</a></li>
+                        <li><a href="products.html" class="active">Computer Parts</a></li>
+                    </ul>
+                </li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="queries.html">Queries & FAQ</a></li>
+            </ul>
+        </nav>
+
+        <script>
+            // Toggle navigation on mobile
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+
+            // Toggle dropdown for all dropdown menus
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            dropdowns.forEach((dropdown) => {
+                dropdown.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent the click from bubbling up
+                    dropdown.classList.toggle('active');
+                });
+            });
+
+            // Close navigation and dropdowns when clicking outside
+            document.addEventListener('click', (event) => {
+                const isClickInsideNav = navLinks.contains(event.target);
+                const isClickOnHamburger = hamburger.contains(event.target);
+
+                // Close navigation if clicking outside
+                if (!isClickInsideNav && !isClickOnHamburger) {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+
+                // Close all dropdowns if clicking outside
+                dropdowns.forEach((dropdown) => {
+                    const isClickOnDropdown = dropdown.contains(event.target);
+                    if (!isClickOnDropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            });
+        </script>
+    
+        <!-- Search Bar -->
+        <div class="search">
+            <form action="#" method="get">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." name="search" required>
+                    <button type="submit" class="search-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            <button class="mobile-search-button" aria-label="Toggle search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div>
+            <a href="cart.html" class="cart-link">
+                <span class="item-count">0</span>
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+
+        <script>
+            // Toggle search bar on mobile
+            const mobileSearchButton = document.querySelector('.mobile-search-button');
+            const searchBar = document.querySelector('.search-bar');
+    
+            mobileSearchButton.addEventListener('click', () => {
+                searchBar.classList.toggle('active');
+                mobileSearchButton.classList.toggle('active');
+            });
+            // Close search bar when clicking outside
+            document.addEventListener('click', (event) => {
+            const isClickInsideSearchBar = searchBar.contains(event.target);
+            const isClickOnMobileButton = mobileSearchButton.contains(event.target);
+    
+            // If the click is outside the search bar and not on the mobile button
+            if (!isClickInsideSearchBar && !isClickOnMobileButton) {
+            searchBar.classList.remove('active'); // Close the search bar
+            mobileSearchButton.classList.remove('active'); // Show the mobile button
+           }
+           });
+        </script>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="products-intro">
+            <h1>Product Ordering</h1>
+            <p>Select your desired products and quantities. We'll process your order shortly!</p>
+        </section>
+    
+        <!-- Category: Processors -->
+        <section class="category">
+            <div class="products-intro">
+              <h2>Processors</h2>
+            </div>
+            <div class="grid">
+              <!-- Item 1 -->
+              <div class="grid-item" data-id="1">
+                <img src="I9.png" alt="Intel Core i9-13900K">
+                <h3>Intel Core i9-13900K</h3>
+                <div class="overlay">
+                  <p>12 Cores, 24 Threads, 5.8GHz Turbo Boost</p>
+                  <p class="price">$699.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 2 -->
+              <div class="grid-item" data-id="2">
+                <img src="ryzen 9.png" alt="AMD Ryzen 9 7900X">
+                <h3>AMD Ryzen 9 7900X</h3>
+                <div class="overlay">
+                  <p>12 Cores, 24 Threads, 4.7GHz Base</p>
+                  <p class="price">$549.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 3 -->
+              <div class="grid-item" data-id="3">
+                <img src="i5.png" alt="Intel Core i5-13600K">
+                <h3>Intel Core i5-13600K</h3>
+                <div class="overlay">
+                  <p>14 Cores, 20 Threads, 5.1GHz Turbo Boost</p>
+                  <p class="price">$329.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 4 -->
+              <div class="grid-item" data-id="4">
+                <img src="ryzen 7.png" alt="AMD Ryzen 7 7800X">
+                <h3>AMD Ryzen 7 7800X</h3>
+                <div class="overlay">
+                  <p>8 Cores, 16 Threads, 4.5GHz Base</p>
+                  <p class="price">$399.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 5 -->
+              <div class="grid-item" data-id="5">
+                <img src="i7.png" alt="Intel Core i7-13700K">
+                <h3>Intel Core i7-13700K</h3>
+                <div class="overlay">
+                  <p>8 Cores, 16 Threads, 5.2GHz Turbo Boost</p>
+                  <p class="price">$479.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 6 -->
+              <div class="grid-item" data-id="6">
+                <img src="ryzen 5.png" alt="AMD Ryzen 5 7600X">
+                <h3>AMD Ryzen 5 7600X</h3>
+                <div class="overlay">
+                  <p>6 Cores, 12 Threads, 4.7GHz Base</p>
+                  <p class="price">$299.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+    
+        <!-- Category: Graphics Cards -->
+        <section class="category">
+            <div class="products-intro">
+              <h2>Graphic Cards</h2>
+            </div>
+            <div class="grid">
+              <!-- Item 1 -->
+              <div class="grid-item">
+                <img src="rtx4090.jpg" alt="NVIDIA RTX 4090">
+                <h3>NVIDIA RTX 4090</h3>
+                <div class="overlay">
+                  <p>24GB GDDR6X, 4K & 8K Ready, Ray Tracing</p>
+                  <p class="price">$1599.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 2 -->
+              <div class="grid-item">
+                <img src="rx7900.jpg" alt="AMD Radeon RX 7900 XTX">
+                <h3>AMD Radeon RX 7900 XTX</h3>
+                <div class="overlay">
+                  <p>24GB GDDR6, RDNA 3, 4K Gaming Performance</p>
+                  <p class="price">$1499.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 3 -->
+              <div class="grid-item">
+                <img src="rtx3080.png" alt="NVIDIA RTX 3080 Ti">
+                <h3>NVIDIA RTX 3080 Ti</h3>
+                <div class="overlay">
+                  <p>12GB GDDR6X, 4K Gaming Performance, Ray Tracing</p>
+                  <p class="price">$1199.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 4 -->
+              <div class="grid-item">
+                <img src="rtx3060.png" alt="NVIDIA RTX 3060 Ti">
+                <h3>NVIDIA RTX 3060 Ti</h3>
+                <div class="overlay">
+                  <p>8GB GDDR6, 1080p & 1440p Gaming</p>
+                  <p class="price">$399.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 5 -->
+              <div class="grid-item">
+                <img src="rx6600.jpg" alt="AMD Radeon RX 6600 XT">
+                <h3>AMD Radeon RX 6600 XT</h3>
+                <div class="overlay">
+                  <p>8GB GDDR6, 1080p Gaming Performance</p>
+                  <p class="price">$299.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 6 -->
+              <div class="grid-item">
+                <img src="rtx1650.png" alt="NVIDIA GTX 1650">
+                <h3>NVIDIA GTX 1650</h3>
+                <div class="overlay">
+                  <p>4GB GDDR5, Budget 1080p Gaming</p>
+                  <p class="price">$179.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+        
+        <!-- Category: Motherboards -->
+        <section class="category">
+            <div class="products-intro">
+              <h2>Motherboards</h2>
+            </div>
+            <div class="grid">
+              <!-- Item 1 -->
+              <div class="grid-item">
+                <img src="rog strix.webp" alt="ASUS ROG Strix B550-F">
+                <h3>ASUS ROG Strix B550-F</h3>
+                <div class="overlay">
+                  <p>ATX Gaming Motherboard with PCIe 4.0 and WiFi 6</p>
+                  <p class="price">$189.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 2 -->
+              <div class="grid-item">
+                <img src="msi carbon.webp" alt="MSI MPG Z790 Carbon WiFi">
+                <h3>MSI MPG Z790 Carbon WiFi</h3>
+                <div class="overlay">
+                  <p>LGA 1700 DDR5 ATX Motherboard with WiFi 6E</p>
+                  <p class="price">$299.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 3 -->
+              <div class="grid-item">
+                <img src="gigabyte.png" alt="Gigabyte X670 AORUS Elite AX">
+                <h3>Gigabyte X670 AORUS Elite AX</h3>
+                <div class="overlay">
+                  <p>AM5 Socket, DDR5 Support, PCIe 5.0</p>
+                  <p class="price">$259.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 4 -->
+              <div class="grid-item">
+                <img src="asrock.jpg" alt="ASRock B660M Pro RS">
+                <h3>ASRock B660M Pro RS</h3>
+                <div class="overlay">
+                  <p>Micro ATX, DDR4, LGA 1700 Compatible</p>
+                  <p class="price">$114.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 5 -->
+              <div class="grid-item">
+                <img src="asus tuf.webp" alt="ASUS TUF Gaming Z790-Plus">
+                <h3>ASUS TUF Gaming Z790-Plus</h3>
+                <div class="overlay">
+                  <p>DDR5, PCIe 5.0, USB 3.2 Gen 2x2, WiFi 6</p>
+                  <p class="price">$249.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 6 -->
+            <!-- Item 6 -->
+            <div class="grid-item">
+                <img src="msimag.jpg" alt="MSI MAG B850 Tomahawk MAX WiFi">
+                <h3>MSI MAG B850 Tomahawk</h3>
+                <div class="overlay">
+                <p>AM5, DDR5, PCIe 5.0, WiFi 7, Lightning Gen 5</p>
+                <p class="price">$199.99</p>
+                <input type="number" min="0" value="0">
+                <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+        <!-- Category: RAM -->
+        <section class="category">
+            <div class="products-intro">
+              <h2>RAM</h2>
+            </div>
+            <div class="grid">
+              <!-- Item 1 -->
+              <div class="grid-item">
+                <img src="corsair.png" alt="Corsair Vengeance LPX 16GB">
+                <h3>Corsair Vengeance LPX 16GB</h3>
+                <div class="overlay">
+                  <p>DDR4, 3200MHz, Low-Profile</p>
+                  <p class="price">$79.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 2 -->
+              <div class="grid-item">
+                <img src="gskill.webp" alt="G.Skill Ripjaws V 32GB">
+                <h3>G.Skill Ripjaws V 32GB</h3>
+                <div class="overlay">
+                  <p>DDR4, 3600MHz, Performance Memory</p>
+                  <p class="price">$149.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 3 -->
+              <div class="grid-item">
+                <img src="fury.webp" alt="Kingston Fury Beast 16GB">
+                <h3>Kingston Fury Beast 16GB</h3>
+                <div class="overlay">
+                  <p>DDR4, 2666MHz, High-Speed</p>
+                  <p class="price">$69.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 4 -->
+              <div class="grid-item">
+                <img src="crucial.jpg" alt="Crucial Ballistix 16GB">
+                <h3>Crucial Ballistix 16GB</h3>
+                <div class="overlay">
+                  <p>DDR4, 3200MHz, Gaming Memory</p>
+                  <p class="price">$89.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        <!-- Category: Storage -->
+        <section class="category">
+            <div class="products-intro">
+              <h2>Storage Devices</h2>
+            </div>
+            <div class="grid">
+              <!-- Item 1 -->
+              <div class="grid-item">
+                <img src="samsung.png" alt="Samsung 970 EVO Plus 1TB">
+                <h3>Samsung 970 EVO Plus 1TB</h3>
+                <div class="overlay">
+                  <p>NVMe SSD, M.2, Read 3500MB/s</p>
+                  <p class="price">$129.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 2 -->
+              <div class="grid-item">
+                <img src="wdblack.webp" alt="Western Digital Black SN850 2TB">
+                <h3>Western Digital Black SN850 2TB</h3>
+                <div class="overlay">
+                  <p>NVMe SSD, M.2, Read 7000MB/s</p>
+                  <p class="price">$249.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 3 -->
+              <div class="grid-item">
+                <img src="p5plus.jpg" alt="Crucial P5 Plus 1TB">
+                <h3>Crucial P5 Plus 1TB</h3>
+                <div class="overlay">
+                  <p>PCIe 4.0 NVMe SSD, M.2, Read 6600MB/s</p>
+                  <p class="price">$109.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 4 -->
+              <div class="grid-item">
+                <img src="seagate.jpg" alt="Seagate FireCuda 530 1TB">
+                <h3>Seagate FireCuda 530 1TB</h3>
+                <div class="overlay">
+                  <p>NVMe Gen4 SSD, M.2, Read 7300MB/s</p>
+                  <p class="price">$159.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 5 -->
+              <div class="grid-item">
+                <img src="kingston.jpg" alt="Kingston A2000 1TB">
+                <h3>Kingston A2000 1TB</h3>
+                <div class="overlay">
+                  <p>NVMe SSD, M.2, Read 2200MB/s</p>
+                  <p class="price">$89.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+          
+              <!-- Item 6 -->
+              <div class="grid-item">
+                <img src="sandisk.webp" alt="SanDisk Ultra 1TB">
+                <h3>SanDisk Ultra 1TB</h3>
+                <div class="overlay">
+                  <p>SATA SSD, 2.5-inch, Read 550MB/s</p>
+                  <p class="price">$79.99</p>
+                  <input type="number" min="0" value="0">
+                  <div class="buttons">
+                    <button class="add-to-cart">Add to Cart</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>      
+    </main>
+
+    <!-- Footer Section-->
+    <footer>
+        <div class="footer-content">
+            <!-- Left Side: Sections -->
+            <div class="footer-sections">
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>Email: toxicgamers@gmail.com</li>
+                        <li>Phone: +94 (81) 999 9999</li>
+                        <li>Address: 123 ,KCC,Kandy.</li>
+                    </ul>
+                </div>
+    
+                <!-- Sitemap -->
+                <div class="footer-section">
+                    <h3>Sitemap</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="upcoming.html">Upcoming Games</a></li>
+                        <li><a href="accessories.html">Consoles</a></li>
+                        <li><a href="pca.html">Gaming Peripherals</a></li>
+                        <li><a href="products.html">Computer Parts</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="queries.html">Queries & FAQ</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Legal -->
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Follow Us On -->
+                <div class="footer-section">
+                    <h3>Follow Us On</h3>
+                    <ul class="social-links">
+                        <li><a href="#"><img src="./fb.png" alt="Facebook"></a></li>
+                        <li><a href="#"><img src="./Insta.png" alt="Instagram"></a></li>
+                        <li><a href="#"><img src="./x.png" alt="X"></a></li>
+                        <li><a href="#"><img src="./linkedin.png" alt="Linkedin"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Footer Logo and Introduction -->
+            <div class="footer-logo">
+                 <div class="logo">
+                    <a href="index.html">
+                        <img src="./logo.png" alt="Gaming Logo">
+                    </a>
+                   <span class="website-name1">Toxic Gamers</span>
+                 </div>
+                   <p class="footer-intro">Your ultimate destination for the latest games, consoles, and accessories. Join the gaming revolution!</p>
+            </div>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Toxic Gamers. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+</html>

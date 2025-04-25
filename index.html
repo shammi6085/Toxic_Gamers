@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxic Gamers - Home</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="./logo.png" alt="Gaming Logo">
+            </a>
+            <span class="website-name">Toxic Gamers</span>
+        </div>
+        
+        <!-- Hamburger Button -->
+        <button class="hamburger" aria-label="Toggle navigation">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    
+        <!-- Navigation Links -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li class="dropdown">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="aboutus.html#our-story">Our Story</a></li>
+                        <li><a href="aboutus.html#contact-us">Contact Us</a></li>
+                        <li><a href="aboutus.html#store-info">Store Info</a></li>
+                    </ul>
+                </li>
+                <li><a href="upcoming.html">Upcoming Games</a></li>
+                <li class="dropdown">
+                    <a href="#">Accessories</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="accessories.html#">Consoles</a></li>
+                        <li><a href="pca.html">Gaming Peripherals</a></li>
+                        <li><a href="products.html">Computer Parts</a></li>
+                    </ul>
+                </li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="queries.html">Queries & FAQ</a></li>
+            </ul>
+        </nav>
+
+        <script>
+            // Toggle navigation on mobile
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+
+            // Toggle dropdown for all dropdown menus
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            dropdowns.forEach((dropdown) => {
+                dropdown.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent the click from bubbling up
+                    dropdown.classList.toggle('active');
+                });
+            });
+
+            // Close navigation and dropdowns when clicking outside
+            document.addEventListener('click', (event) => {
+                const isClickInsideNav = navLinks.contains(event.target);
+                const isClickOnHamburger = hamburger.contains(event.target);
+
+                // Close navigation if clicking outside
+                if (!isClickInsideNav && !isClickOnHamburger) {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+
+                // Close all dropdowns if clicking outside
+                dropdowns.forEach((dropdown) => {
+                    const isClickOnDropdown = dropdown.contains(event.target);
+                    if (!isClickOnDropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            });
+        </script>
+    
+        <!-- Search Bar -->
+        <div class="search">
+            <form action="#" method="get">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." name="search" required>
+                    <button type="submit" class="search-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            <button class="mobile-search-button" aria-label="Toggle search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div>
+            <a href="cart.html" class="cart-link">
+                <span class="item-count">0</span>
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const itemCountSpan = document.querySelector(".item-count");
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+                if (itemCountSpan) {
+                    itemCountSpan.textContent = totalItems;
+                }
+            });
+        </script>
+
+        <script>
+            // Toggle search bar on mobile
+            const mobileSearchButton = document.querySelector('.mobile-search-button');
+            const searchBar = document.querySelector('.search-bar');
+    
+            mobileSearchButton.addEventListener('click', () => {
+                searchBar.classList.toggle('active');
+                mobileSearchButton.classList.toggle('active');
+            });
+            // Close search bar when clicking outside
+            document.addEventListener('click', (event) => {
+            const isClickInsideSearchBar = searchBar.contains(event.target);
+            const isClickOnMobileButton = mobileSearchButton.contains(event.target);
+    
+            // If the click is outside the search bar and not on the mobile button
+            if (!isClickInsideSearchBar && !isClickOnMobileButton) {
+            searchBar.classList.remove('active'); // Close the search bar
+            mobileSearchButton.classList.remove('active'); // Show the mobile button
+           }
+           });
+        </script>
+    </header>
+    <main>
+        <!-- Hero Section with Slideshow -->
+        <section id="home" class="hero">
+            <div class="slideshow">
+                <div class="slide active">
+                    <img src="./gta6.jpg" alt="Gaming Image 1">
+                </div>
+                <div class="slide">
+                    <img src="./acshadows.jpg" alt="Gaming Image 2">
+                </div>
+                <div class="slide">
+                    <img src="./Forzah5.jpg" alt="Gaming Image 3">
+                </div>
+                <div class="slide">
+                    <img src="./blackmyth.jpeg" alt="Gaming Image 4">
+                </div>
+                <div class="slide">
+                    <img src="./deltaforce.jpeg" alt="Gaming Image 5">
+                </div>
+                <div class="slide">
+                    <img src="./rdr2.jpg" alt="Gaming Image 6">
+                </div>
+            </div>
+            <div class="hero-content">
+                <h1>Welcome to Toxic Gamers</h1>
+                <p>Your one-stop shop for the latest games, consoles, and accessories.</p>
+                <a href="#products" class="btn-primary">View More</a>
+            </div>
+        </section>
+        <script>
+        // Slideshow Script
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach((slide) => {
+                slide.classList.remove('active');
+            });
+
+            // Show the current slide
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length; // Loop back to the first slide
+            showSlide(currentSlide);
+        }
+
+        // Automatically transition to the next slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+        </script>
+
+        <!-- Sub-Section 1: Must-Play Games of 2024 -->
+        <section id="must-play" class="sub-section">
+            <h2>Must-Play Games of 2024</h2>
+            <div class="video-container">
+                <video controls>
+                    <source src="edit.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p>
+                2024 is shaping up to be an incredible year for gamers, with a lineup of highly anticipated titles. From action-packed adventures to immersive RPGs, there's something for every type of gamer.
+            </p>
+            <p>
+                Some of the most played games of 2024 include "Black Myth: Wukong" and "Call of Duty: Black Ops 6". "Assassin's Creed Mirage," was released for Microsoft Windows version in 2024. These games promise to deliver stunning visuals, engaging storylines, and hours of entertainment.
+            </p>
+            <!-- Bullet point List -->
+            <ul>
+                <li>Black Myth: Wukong</li>
+                <li>Call of Duty: Black Ops 6</li>
+                <li>Assassin's Creed Mirage</li>
+                <li>Delta Force: Hawk Ops</li>
+            </ul>
+        </section>
+
+        <!-- Sub-Section 2: Top Gaming Consoles -->
+        <section id="consoles" class="sub-section">
+            <h2>Top Gaming Consoles</h2>
+            <img src="./collage.jpg" alt="Top Gaming Consoles">
+            <p>Gaming consoles have come a long way since their inception. Today, consoles like the PlayStation 5 and Xbox Series X offer unparalleled performance and graphics. These consoles are designed to deliver a next-gen gaming experience.</p>
+            <p>
+                The competition between console manufacturers is fierce, with each company striving to offer the best features and exclusive games. Whether you're a fan of Sony, Microsoft, or Nintendo, there's a console for everyone.
+            </p>
+            <!-- Numbered List -->
+            <ol>
+                <li>PlayStation 5</li>
+                <li>Xbox Series X</li>
+                <li>Nintendo Switch</li>
+                <li>Steam Deck</li>
+            </ol>
+        </section>
+
+        <!-- Sub-Section 3: Latest Gaming Trends -->
+        <section id="trends" class="sub-section">
+            <h2>Latest Gaming Trends</h2>
+            <div class="video-container">
+                <video controls>
+                    <source src="vr.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <p>
+                The gaming industry is constantly evolving, with new trends emerging every year. From virtual reality (VR) to cloud gaming, the future of gaming looks brighter than ever. Gamers are now looking for immersive experiences that go beyond traditional gameplay.
+            </p>
+            <p>
+                One of the most exciting trends is the rise of cross-platform gaming, allowing players to enjoy their favorite games on multiple devices seamlessly. Additionally, the integration of AI in gaming is revolutionizing how games are developed and played.
+            </p>
+            <!-- Bullet point List -->
+            <ul>
+                <li>Virtual Reality (VR) and Augmented Reality (AR)</li>
+                <li>Cloud Gaming Services</li>
+                <li>Cross-Platform Play</li>
+                <li>AI-Driven Game Development</li>
+            </ul>
+        </section>
+
+        <!-- Featured Products Section -->
+        <section id="products" class="featured-products">
+            <h2>Featured</h2>
+            <div class="product-grid">
+                <div class="product-card1">
+                    <img src="./b06.jpg" alt="Call of Duty-Black Ops 6">
+                    <h3>Games</h3>
+                    <a href="games.html" class="btn-secondary">More Details</a>
+                </div>
+
+                <div class="product-card2">
+                    <img src="./PS5.jpg" alt="PS5">
+                    <h3>Consoles</h3>
+                    <a href="accessories.html" class="btn-secondary">More Details</a>
+                </div>
+
+                <div class="product-card3">
+                    <img src="./Accesories.webp" alt="Accessories">
+                    <h3>Gaming Peripherals</h3>
+                    <a href="pca.html" class="btn-secondary">More Details</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subscribe to Our Newsletter Section -->
+        <section id="subscribe" class="subscribe-section">
+            <h2>Subscribe to Our Newsletter</h2>
+            <p>Stay updated with the latest news, games, and exclusive offers. Join our community today!</p>
+            <form class="subscribe-form">
+                <input type="email" placeholder="Enter your email" required>
+                <button type="submit" class="btn-tertiary">Subscribe</button>
+            </form>
+        </section>
+
+    </main>
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-sections">
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>Email: toxicgamers@gmail.com</li>
+                        <li>Phone: +94 (81) 999 9999</li>
+                        <li>Address: 123 ,KCC,Kandy.</li>
+                    </ul>
+                </div>
+    
+                <!-- Sitemap -->
+                <div class="footer-section">
+                    <h3>Sitemap</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="upcoming.html">Upcoming Games</a></li>
+                        <li><a href="accessories.html">Consoles</a></li>
+                        <li><a href="pca.html">Gaming Peripherals</a></li>
+                        <li><a href="products.html">Computer Parts</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="queries.html">Queries & FAQ</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Legal -->
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Follow Us On -->
+                <div class="footer-section">
+                    <h3>Follow Us On</h3>
+                    <ul class="social-links">
+                        <li><a href="#"><img src="./fb.png" alt="Facebook"></a></li>
+                        <li><a href="#"><img src="./Insta.png" alt="Instagram"></a></li>
+                        <li><a href="#"><img src="./x.png" alt="X"></a></li>
+                        <li><a href="#"><img src="./linkedin.png" alt="Linkedin"></a></li>
+                    </ul>
+                </div>
+            </div>    
+            <!-- Footer Logo and Introduction -->
+            <div class="footer-logo">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="./logo.png" alt="Gaming Logo">
+                    </a>
+                    <span class="website-name1">Toxic Gamers</span>
+                </div>
+                   <p class="footer-intro">Your ultimate destination for the latest games, consoles, and accessories. Join the gaming revolution!</p>
+            </div>
+        </div>
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Toxic Gamers. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

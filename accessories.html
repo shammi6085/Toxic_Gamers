@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxic Gamers - Accessories</title>
+    <link rel="stylesheet" href="./accessories.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="./logo.png" alt="Gaming Logo">
+            </a>
+            <span class="website-name">Toxic Gamers</span>
+        </div>
+        
+        <!-- Hamburger Button -->
+        <button class="hamburger" aria-label="Toggle navigation">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    
+        <!-- Navigation Links -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="aboutus.html#our-story">Our Story</a></li>
+                        <li><a href="aboutus.html#contact-us">Contact Us</a></li>
+                        <li><a href="aboutus.html#store-info">Store Info</a></li>
+                    </ul>
+                </li>
+                <li><a href="upcoming.html">Upcoming Games</a></li>
+                <li class="dropdown">
+                    <a href="#" class="active">Accessories</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="accessories.html#" class="active">Consoles</a></li>
+                        <li><a href="pca.html">Gaming Peripherals</a></li>
+                        <li><a href="products.html">Computer Parts</a></li>
+                    </ul>
+                </li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="queries.html">Queries & FAQ</a></li>
+            </ul>
+        </nav>
+
+        <script>
+            // Toggle navigation on mobile
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+
+            // Toggle dropdown for all dropdown menus
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            dropdowns.forEach((dropdown) => {
+                dropdown.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent the click from bubbling up
+                    dropdown.classList.toggle('active');
+                });
+            });
+
+            // Close navigation and dropdowns when clicking outside
+            document.addEventListener('click', (event) => {
+                const isClickInsideNav = navLinks.contains(event.target);
+                const isClickOnHamburger = hamburger.contains(event.target);
+
+                // Close navigation if clicking outside
+                if (!isClickInsideNav && !isClickOnHamburger) {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+
+                // Close all dropdowns if clicking outside
+                dropdowns.forEach((dropdown) => {
+                    const isClickOnDropdown = dropdown.contains(event.target);
+                    if (!isClickOnDropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            });
+        </script>
+    
+        <!-- Search Bar -->
+        <div class="search">
+            <form action="#" method="get">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." name="search" required>
+                    <button type="submit" class="search-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            <button class="mobile-search-button" aria-label="Toggle search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div>
+            <a href="cart.html" class="cart-link">
+                <span class="item-count">0</span>
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const itemCountSpan = document.querySelector(".item-count");
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+                if (itemCountSpan) {
+                    itemCountSpan.textContent = totalItems;
+                }
+            });
+        </script>
+
+        <script>
+            // Toggle search bar on mobile
+            const mobileSearchButton = document.querySelector('.mobile-search-button');
+            const searchBar = document.querySelector('.search-bar');
+    
+            mobileSearchButton.addEventListener('click', () => {
+                searchBar.classList.toggle('active');
+                mobileSearchButton.classList.toggle('active');
+            });
+            // Close search bar when clicking outside
+            document.addEventListener('click', (event) => {
+            const isClickInsideSearchBar = searchBar.contains(event.target);
+            const isClickOnMobileButton = mobileSearchButton.contains(event.target);
+    
+            // If the click is outside the search bar and not on the mobile button
+            if (!isClickInsideSearchBar && !isClickOnMobileButton) {
+            searchBar.classList.remove('active'); // Close the search bar
+            mobileSearchButton.classList.remove('active'); // Show the mobile button
+           }
+           });
+        </script>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="consoles-intro">
+            <h1>Consoles & Console Peripherals</h1>
+            <p>Discover the ultimate gaming experience with our wide range of consoles and peripherals. From cutting-edge gaming systems to high-performance accessories, we have everything you need to dominate the game.</p><br>
+        </section>
+
+        <!-- Consoles Section -->
+    <section class="category">
+    <h2>Consoles</h2>
+    <div class="grid">
+        <!-- Existing Grid Items -->
+        <div class="grid-item">
+            <img src="./ps5.webp" alt="PlayStation 5">
+            <h3>PlayStation 5</h3>
+            <div class="overlay">
+                <p>The next-gen console delivering stunning graphics and ultra-fast load times.</p>
+                <div class="price">150,000 LKR</div>
+                <div class="buttons">
+                    <button class="buy-now">Buy Now</button>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <img src="./xbox.webp" alt="Xbox Series X">
+            <h3>Xbox Series X</h3>
+            <div class="overlay">
+                <p>Experience true 4K gaming with the most powerful Xbox ever.</p>
+                <div class="price">150,000 LKR</div>
+                <div class="buttons">
+                    <button class="buy-now">Buy Now</button>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <img src="./nintendo.webp" alt="Nintendo Switch">
+            <h3>Nintendo Switch</h3>
+            <div class="overlay">
+                <p>The hybrid console that lets you play anywhere, anytime.</p>
+                <div class="price">89,000 LKR</div>
+                <div class="buttons">
+                    <button class="buy-now">Buy Now</button>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <img src="./steamd.webp" alt="Steam Deck">
+            <h3>Steam Deck</h3>
+            <div class="overlay">
+                <p>Play your Steam library on the go with this handheld gaming PC.</p>
+                <div class="price">114,999 LKR</div>
+                <div class="buttons">
+                    <button class="buy-now">Buy Now</button>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <img src="./psportal.jpg" alt="PlayStation Portal">
+            <h3>PlayStation Portal</h3>
+            <div class="overlay">
+                <p>Stream your PS5 games to this handheld device for on-the-go gaming.</p>
+                <div class="price">55,555 LKR</div>
+                <div class="buttons">
+                    <button class="buy-now">Buy Now</button>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <img src="./xboxss.jpeg" alt="Xbox Series S">
+            <h3>Xbox Series S</h3>
+            <div class="overlay">
+                <p>A compact, all-digital console for next-gen gaming at an affordable price.</p>
+                <div class="price">89,000 LKR</div>
+                <div class="buttons">
+                    <button class="buy-now">Buy Now</button>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section><br>
+
+    <!-- Console Peripherals Section -->
+<section class="category">
+    <h2>Console Peripherals</h2>
+    <div class="grid">
+        <!-- Grid Items -->
+        <div class="grid-item">
+            <img src="./dualsense.webp" alt="PS5 DualSense Controller">
+            <h3>PS5 DualSense Controller</h3>
+            <div class="overlay">
+                <p>Experience immersive gaming with haptic feedback and adaptive triggers.</p>
+                <div class="price">20,000 LKR</div>
+                <div class="buttons">
+                    <button class="buy-now">Buy Now</button>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <img src="./xboxcont.jpg" alt="Xbox Wireless Controller">
+            <h3>Xbox Wireless Controller</h3>
+            <div class="overlay">
+                <p>Precision gaming with a sleek design and customizable button mapping.</p>
+                <div class="price">17,900 LKR</div>
+                <div class="buttons">
+                    <button class="buy-now">Buy Now</button>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="grid-item">
+            <img src="./joycon.png" alt="Nintendo Joy-Con">
+            <h3>Nintendo Joy-Con</h3>
+            <div class="overlay">
+                <p>Versatile controllers for the Nintendo Switch, perfect for multiplayer gaming.</p>
+                <div class="price">22,999 LKR</div>
+                <div class="buttons">
+                    <button class="buy-now">Buy Now</button>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    </main>
+    <!-- Footer Section-->
+    <footer>
+        <div class="footer-content">
+            <!-- Left Side: Sections -->
+            <div class="footer-sections">
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>Email: toxicgamers@gmail.com</li>
+                        <li>Phone: +94 (81) 999 9999</li>
+                        <li>Address: 123 ,KCC,Kandy.</li>
+                    </ul>
+                </div>
+    
+                <!-- Sitemap -->
+                <div class="footer-section">
+                    <h3>Sitemap</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="upcoming.html">Upcoming Games</a></li>
+                        <li><a href="accessories.html">Consoles</a></li>
+                        <li><a href="pca.html">Gaming Peripherals</a></li>
+                        <li><a href="products.html">Computer Parts</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="queries.html">Queries & FAQ</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Legal -->
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Follow Us On -->
+                <div class="footer-section">
+                    <h3>Follow Us On</h3>
+                    <ul class="social-links">
+                        <li><a href="#"><img src="./fb.png" alt="Facebook"></a></li>
+                        <li><a href="#"><img src="./Insta.png" alt="Instagram"></a></li>
+                        <li><a href="#"><img src="./x.png" alt="X"></a></li>
+                        <li><a href="#"><img src="./linkedin.png" alt="Linkedin"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Footer Logo and Introduction -->
+            <div class="footer-logo">
+                 <div class="logo">
+                    <a href="index.html">
+                        <img src="./logo.png" alt="Gaming Logo">
+                    </a>
+                   <span class="website-name1">Toxic Gamers</span>
+                 </div>
+                   <p class="footer-intro">Your ultimate destination for the latest games, consoles, and accessories. Join the gaming revolution!</p>
+            </div>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Toxic Gamers. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

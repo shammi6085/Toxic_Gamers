@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxic Gamers - Games</title>
+    <link rel="stylesheet" href="./games.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="./logo.png" alt="Gaming Logo">
+            </a>
+            <span class="website-name">Toxic Gamers</span>
+        </div>
+        
+        <!-- Hamburger Button -->
+        <button class="hamburger" aria-label="Toggle navigation">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    
+        <!-- Navigation Links -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="aboutus.html#our-story">Our Story</a></li>
+                        <li><a href="aboutus.html#contact-us">Contact Us</a></li>
+                        <li><a href="aboutus.html#store-info">Store Info</a></li>
+                    </ul>
+                </li>
+                <li><a href="upcoming.html">Upcoming Games</a></li>
+                <li class="dropdown">
+                    <a href="#">Accessories</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="accessories.html#">Consoles</a></li>
+                        <li><a href="pca.html">Gaming Peripherals</a></li>
+                        <li><a href="products.html">Computer Parts</a></li>
+                    </ul>
+                </li>
+                <li><a href="games.html" class="active">Games</a></li>
+                <li><a href="queries.html">Queries & FAQ</a></li>
+            </ul>
+        </nav>
+
+        <script>
+            // Toggle navigation on mobile
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+
+            // Toggle dropdown for all dropdown menus
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            dropdowns.forEach((dropdown) => {
+                dropdown.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent the click from bubbling up
+                    dropdown.classList.toggle('active');
+                });
+            });
+
+            // Close navigation and dropdowns when clicking outside
+            document.addEventListener('click', (event) => {
+                const isClickInsideNav = navLinks.contains(event.target);
+                const isClickOnHamburger = hamburger.contains(event.target);
+
+                // Close navigation if clicking outside
+                if (!isClickInsideNav && !isClickOnHamburger) {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+
+                // Close all dropdowns if clicking outside
+                dropdowns.forEach((dropdown) => {
+                    const isClickOnDropdown = dropdown.contains(event.target);
+                    if (!isClickOnDropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            });
+        </script>
+    
+        <!-- Search Bar -->
+        <div class="search">
+            <form action="#" method="get">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." name="search" required>
+                    <button type="submit" class="search-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            <button class="mobile-search-button" aria-label="Toggle search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div>
+            <a href="cart.html" class="cart-link">
+                <span class="item-count">0</span>
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const itemCountSpan = document.querySelector(".item-count");
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+                if (itemCountSpan) {
+                    itemCountSpan.textContent = totalItems;
+                }
+            });
+        </script>
+
+        <script>
+            // Toggle search bar on mobile
+            const mobileSearchButton = document.querySelector('.mobile-search-button');
+            const searchBar = document.querySelector('.search-bar');
+    
+            mobileSearchButton.addEventListener('click', () => {
+                searchBar.classList.toggle('active');
+                mobileSearchButton.classList.toggle('active');
+            });
+            // Close search bar when clicking outside
+            document.addEventListener('click', (event) => {
+            const isClickInsideSearchBar = searchBar.contains(event.target);
+            const isClickOnMobileButton = mobileSearchButton.contains(event.target);
+    
+            // If the click is outside the search bar and not on the mobile button
+            if (!isClickInsideSearchBar && !isClickOnMobileButton) {
+            searchBar.classList.remove('active'); // Close the search bar
+            mobileSearchButton.classList.remove('active'); // Show the mobile button
+           }
+           });
+        </script>
+    </header>
+
+    <main>
+        <!-- Games Section -->
+<section class="intro">
+    <!-- Video Background -->
+    <video autoplay muted loop id="games-video">
+        <source src="./neon.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="intro-content">
+        <h1>Explore Our Game Collection</h1>
+        <p>
+            Dive into a world of endless gaming possibilities! From action-packed adventures to thrilling racing games, we've got something for every gamer.
+        </p>
+    </div>
+</section>
+<section class="games">
+    <h2>Discover Our Game Categories</h2>
+            <div class="genre-section">
+                <h2>Action Games</h2>
+                <div class="games-grid">
+                    <div class="game-card cod-mw3">
+                        <div class="image-container">
+                            <img src="./mw3.jpg" alt="COD MW3">
+                        </div>
+                        <div class="game-info">
+                            <h3>Call of Duty: Modern Warfare III</h3>
+                        </div>
+                        <div class="game-description cod-mw3-desc">
+                            <ul>
+                                <li>Release Date : November 10, 2023</li>
+                                <li>Platform : PlayStation 5, Xbox Series X and Series S, Microsoft Windows</li>
+                                <li>Genre: First-person shooter</li>
+                            </ul>
+                            <h4>Price : 20,000 LKR</h4>
+                            <p>Experience intense combat, stunning visuals, and a gripping storyline in the ultimate first-person shooter.</p>
+                        </div>
+                    </div>
+                    <div class="game-card battlefield-2042">
+                        <div class="image-container">
+                            <img src="./battlefield.jpg" alt="Battlefield 2042">
+                        </div>
+                        
+                        <div class="game-info">
+                            <h3>Battlefield 2042</h3>
+                        </div>
+                        <div class="game-description battlefield-2042-desc">
+                            <ul>
+                                <li>Release Date : November 12, 2021</li>
+                                <li>Platform : PlayStation 5, Xbox Series X and Series S, Microsoft Windows</li>
+                                <li>Genre: First-person shooter, Adventure game</li>
+                            </ul>
+                            <h4>Price : 18,000 LKR</h4>
+                            <p>Engage in large-scale battles across dynamic maps with ever-changing weather and environmental hazards.</p>
+                        </div>
+                    </div>
+                    <div class="game-card farcry-6">
+                        <div class="image-container">
+                            <img src="./farcry.avif" alt="Farcry 6">
+                        </div>
+                        
+                        <div class="game-info">
+                            <h3>Farcry 6</h3>
+                        </div>
+                        <div class="game-description farcry-6-desc">
+                            <ul>
+                                <li>Release Date : October 7, 2021</li>
+                                <li>Platform : PlayStation 5, Xbox Series X and Series S, Microsoft Windows</li>
+                                <li>Genre: First-person shooter, Action-adventure game</li>
+                            </ul>
+                            <h4>Price : 18,000 LKR</h4>
+                            <p>Fight to liberate the island of Yara from a ruthless dictator with a vast arsenal and guerrilla tactics.</p>
+                        </div>
+                    </div>
+                    <div class="game-card hitman-3">
+                        <div class="image-container">
+                            <img src="./hitman.jpg" alt="Hitman 3">
+                        </div>
+                        
+                        <div class="game-info">
+                            <h3>Hitman 3</h3>
+                        </div>
+                        <div class="game-description hitman-3-desc">
+                            <ul>
+                                <li>Release Date : January 20, 2021</li>
+                                <li>Platform : PlayStation 5, Xbox Series X and Series S, Microsoft Windows</li>
+                                <li>Genre: Virtual reality, Stealth game, Action-adventure game</li>
+                            </ul>
+                            <h4>Price : 8,500 LKR</h4>
+                            <p>Execute meticulously planned assassinations across the globe with endless possibilities and creative freedom.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="genre-section">
+                <h2>Racing Games</h2>
+                <div class="games-grid">
+                    <div class="game-card nfs-heat">
+                        <div class="image-container">
+                            <img src="./nfs.avif" alt="NFS Heat">
+                        </div>
+                        
+                        <div class="game-info">
+                            <h3>Need for Speed Heat</h3>
+                        </div>
+                        <div class="game-description nfs-heat-desc">
+                            <ul>
+                                <li>Release Date : November 8, 2019</li>
+                                <li>Platform : PlayStation 4, Xbox One, Microsoft Windows</li>
+                                <li>Genre: Racing Video Game, Action game, Adventure game</li>
+                            </ul>
+                            <h4>Price : 20,000 LKR</h4>
+                            <p>Race by day, risk it all by night, and dominate the streets of Palm City in this high-octane racing experience.</p>
+                        </div>
+                    </div>
+                    <div class="game-card forza-horizon-5">
+                        <div class="image-container">
+                            <img src="./Forzah5.jpg" alt="Forza Horizon 5">
+                        </div>
+                        
+                        <div class="game-info">
+                            <h3>Forza Horizon 5</h3>
+                        </div>
+                        <div class="game-description forza-horizon-5-desc">
+                            <ul>
+                                <li>Release Date : November 1, 2021</li>
+                                <li>Platform : Xbox Series X and Series S, Microsoft Windows</li>
+                                <li>Genre: Racing Video Game, Adventure game, Action game</li>
+                            </ul>
+                            <h4>Price : 17,500 LKR</h4>
+                            <p>Explore the stunning landscapes of Mexico in the ultimate open-world racing adventure.</p>
+                        </div>
+                    </div>
+                    <div class="game-card crew-motorfest">
+                        <div class="image-container">
+                            <img src="./crew.avif" alt="Crew Motorfest">
+                        </div>
+                        
+                        <div class="game-info">
+                            <h3>Crew Motorfest</h3>
+                        </div>
+                        <div class="game-description crew-motorfest-desc">
+                            <ul>
+                                <li>Release Date : September 11, 2023</li>
+                                <li>Platform : PlayStation 5, Xbox Series X and Series S, Microsoft Windows</li>
+                                <li>Genre: Racing Video Game, Simulation Video Game, Action game, Adventure game</li>
+                            </ul>
+                            <h4>Price : 20,000 LKR</h4>
+                            <p>Compete in thrilling races and experience high-speed action in the vibrant world of Hawaii.</p>
+                        </div>
+                    </div>
+                    <div class="game-card gran-turismo-7">
+                        <div class="image-container">
+                            <img src="./gt7.webp" alt="Gran Turismo 7">
+                        </div>
+                        
+                        <div class="game-info">
+                            <h3>Gran Turismo 7</h3>
+                        </div>
+                        <div class="game-description gran-turismo-7-desc">
+                            <ul>
+                                <li>Release Date : March 4, 2022</li>
+                                <li>Platform : PlayStation 5, PlayStation 4</li>
+                                <li>Genre: Racing Video Game, Simulation Video Game</li>
+                            </ul>
+                            <h4>Price : 19,000 LKR</h4>
+                            <p>Experience the pinnacle of racing simulation with authentic driving and a vast car collection.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="genre-section">
+                <h2>Open World Games</h2>
+                <div class="games-grid">
+                    <div class="game-card ac-mirage">
+                        <div class="image-container">
+                            <img src="./acmirage.avif" alt="Assassin's Creed Mirage">
+                        </div>
+                        
+                        <div class="game-info">
+                            <h3>Assassin's Creed Mirage</h3>
+                        </div>
+                        <div class="game-description ac-mirage-desc">
+                            <ul>
+                                <li>Release Date : October 5, 2023</li>
+                                <li>Platform : PlayStation 5, Xbox Series X and Series S, Microsoft Windows</li>
+                                <li>Genre: Stealth game, Action-adventure game, Fighting game</li>
+                            </ul>
+                            <h4>Price : 15,000 LKR</h4>
+                            <p>Uncover secrets, master stealth, and become a legendary assassin in a richly detailed open world.</p>
+                        </div>
+                    </div>
+                    <div class="game-card gta-v">
+                        <div class="image-container">
+                            <img src="./gta5.jpeg" alt="GTA V">
+                        </div>
+                        
+                        <div class="game-info">
+                            <h3>Grand Theft Auto V</h3>
+                        </div>
+                        <div class="game-description gta-v-desc">
+                            <ul>
+                                <li>Release Date : September 17, 2013</li>
+                                <li>Platform : PlayStation 5, Xbox Series X and Series S, Microsoft Windows</li>
+                                <li>Genre: Open world, Action-adventure game, Nonlinear gameplay</li>
+                            </ul>
+                            <h4>Price : 6,000 LKR</h4>
+                            <p>Explore Los Santos and its surroundings in this iconic open-world game with endless activities.</p>
+                        </div>
+                    </div>
+                    <div class="game-card ghost-of-tsushima">
+                        <div class="image-container">
+                            <img src="./tsushima.jpg" alt="Ghost of Tsushima">
+                        </div>
+                        
+                        <div class="game-info">
+                            <h3>Ghost of Tsushima</h3>
+                        </div>
+                        <div class="game-description ghost-of-tsushima-desc">
+                            <ul>
+                                <li>Release Date : July 17, 2020</li>
+                                <li>Platform : PlayStation 5, Xbox Series X and Series S, Microsoft Windows</li>
+                                <li>Genre: Stealth game, Fighting game, Role-playing Video Game</li>
+                            </ul>
+                            <h4>Price : 18,000 LKR</h4>
+                            <p>Protect Tsushima Island from Mongol invaders in a breathtaking samurai adventure.</p>
+                        </div>
+                    </div>
+                    <div class="game-card ghost-recon-wildlands">
+                        <div class="image-container">
+                            <img src="./wildlands.jpg" alt="Ghost Recon Wildlands">
+                        </div>
+                        
+                        <div class="game-info">
+                            <h3>Tom Clancy's Ghost Recon Wildlands</h3>
+                        </div>
+                        <div class="game-description ghost-recon-wildlands-desc">
+                            <ul>
+                                <li>Release Date : March 7, 2017</li>
+                                <li>Platform : PlayStation 4, Xbox One, Microsoft Windows</li>
+                                <li>Genre: Tactical Third-person shooter game, Nonlinear gameplay, Adventure</li>
+                            </ul>
+                            <h4>Price : 15,000 LKR</h4>
+                            <p>Lead a team of elite soldiers to dismantle a powerful drug cartel in a massive open-world mission.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="genre-section">
+                <h2>Sporting Games</h2>
+                <div class="games-grid">
+                    <div class="game-card fifa-23">
+                        <div class="image-container">
+                            <img src="./fc24.jpg" alt="FIFA 23">
+                        </div>
+                        
+                        <div class="game-info">
+                            <h3>FIFA 23</h3>
+                        </div>
+                        <div class="game-description fifa-23-desc">
+                            <ul>
+                                <li>Release Date : September 30, 2022</li>
+                                <li>Platform : PlayStation 5, Xbox Series X and Series S, Microsoft Windows</li>
+                                <li>Genre: Sports, Simulation</li>
+                            </ul>
+                            <h4>Price : 15,000 LKR</h4>
+                            <p>Experience the world's most popular football game with realistic gameplay and stunning graphics.</p>
+                        </div>
+                    </div>
+                    <div class="game-card nba-2k24">
+                        <div class="image-container">
+                            <img src="./nba.jpg" alt="NBA 2K24">
+                        </div>
+                        <div class="game-info">
+                            <h3>NBA 2K24</h3>
+                        </div>
+                        <div class="game-description nba-2k24-desc">
+                            <ul>
+                                <li>Release Date : September 8, 2023</li>
+                                <li>Platform : PlayStation 5, Xbox Series X and Series S, Microsoft Windows</li>
+                                <li>Genre: Sports, Simulation</li>
+                            </ul>
+                            <h4>Price : 18,000 LKR</h4>
+                            <p>Step onto the court and dominate the competition with the latest installment of the NBA 2K series.</p>
+                        </div>
+                    </div>
+                    <div class="game-card f1-23">
+                        <div class="image-container">
+                            <img src="./f123.jpg" alt="F1 23">
+                        </div>
+                        <div class="game-info">
+                            <h3>F1 23</h3>
+                        </div>
+                        <div class="game-description f1-23-desc">
+                            <ul>
+                                <li>Release Date : June 16, 2023</li>
+                                <li>Platform : PlayStation 5, Xbox Series X and Series S, Microsoft Windows</li>
+                                <li>Genre: Racing, Simulation</li>
+                            </ul>
+                            <h4>Price : 20,000 LKR</h4>
+                            <p>Take the wheel and race in the most realistic Formula 1 experience ever.</p>
+                        </div>
+                    </div>
+                    <div class="game-card ufc">
+                        <div class="image-container">
+                            <img src="./ufc.jpg" alt="UFC">
+                        </div>
+                        <div class="game-info">
+                            <h3>UFC 5</h3>
+                        </div>
+                        <div class="game-description ufc-desc">
+                            <ul>
+                                <li>Release Date : October 27, 2023</li>
+                                <li>Platform : PlayStation 5, Xbox Series X and Series S</li>
+                                <li>Genre: Sports, Fighting</li>
+                            </ul>
+                            <h4>Price : 19,000 LKR</h4>
+                            <p>Step into the octagon and experience the most realistic UFC gameplay ever.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer Section-->
+    <footer>
+        <div class="footer-content">
+            <!-- Left Side: Sections -->
+            <div class="footer-sections">
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>Email: toxicgamers@gmail.com</li>
+                        <li>Phone: +94 (81) 999 9999</li>
+                        <li>Address: 123 ,KCC,Kandy.</li>
+                    </ul>
+                </div>
+    
+                <!-- Sitemap -->
+                <div class="footer-section">
+                    <h3>Sitemap</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="upcoming.html">Upcoming Games</a></li>
+                        <li><a href="accessories.html">Consoles</a></li>
+                        <li><a href="pca.html">Gaming Peripherals</a></li>
+                        <li><a href="products.html">Computer Parts</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="queries.html">Queries & FAQ</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Legal -->
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Follow Us On -->
+                <div class="footer-section">
+                    <h3>Follow Us On</h3>
+                    <ul class="social-links">
+                        <li><a href="#"><img src="./fb.png" alt="Facebook"></a></li>
+                        <li><a href="#"><img src="./Insta.png" alt="Instagram"></a></li>
+                        <li><a href="#"><img src="./x.png" alt="X"></a></li>
+                        <li><a href="#"><img src="./linkedin.png" alt="Linkedin"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Footer Logo and Introduction -->
+            <div class="footer-logo">
+                 <div class="logo">
+                    <a href="index.html">
+                        <img src="./logo.png" alt="Gaming Logo">
+                    </a>
+                   <span class="website-name1">Toxic Gamers</span>
+                 </div>
+                   <p class="footer-intro">Your ultimate destination for the latest games, consoles, and accessories. Join the gaming revolution!</p>
+            </div>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Toxic Gamers. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

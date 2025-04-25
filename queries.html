@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toxic Gamers - Queries & FAQ</title>
+    <link rel="stylesheet" href="./queries.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="manifest" href="./site.webmanifest">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Handjet:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="./logo.png" alt="Gaming Logo">
+            </a>
+            <span class="website-name">Toxic Gamers</span>
+        </div>
+        
+        <!-- Hamburger Button -->
+        <button class="hamburger" aria-label="Toggle navigation">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+    
+        <!-- Navigation Links -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="aboutus.html">About Us</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="aboutus.html#our-story">Our Story</a></li>
+                        <li><a href="aboutus.html#contact-us">Contact Us</a></li>
+                        <li><a href="aboutus.html#store-info">Store Info</a></li>
+                    </ul>
+                </li>
+                <li><a href="upcoming.html">Upcoming Games</a></li>
+                <li class="dropdown">
+                    <a href="#">Accessories</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="accessories.html#">Consoles</a></li>
+                        <li><a href="pca.html">Gaming Peripherals</a></li>
+                        <li><a href="products.html">Computer Parts</a></li>
+                    </ul>
+                </li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="queries.html" class="active">Queries & FAQ</a></li>
+            </ul>
+        </nav>
+
+        <script>
+            // Toggle navigation on mobile
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+
+            // Toggle dropdown for all dropdown menus
+            const dropdowns = document.querySelectorAll('.dropdown');
+
+            dropdowns.forEach((dropdown) => {
+                dropdown.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent the click from bubbling up
+                    dropdown.classList.toggle('active');
+                });
+            });
+
+            // Close navigation and dropdowns when clicking outside
+            document.addEventListener('click', (event) => {
+                const isClickInsideNav = navLinks.contains(event.target);
+                const isClickOnHamburger = hamburger.contains(event.target);
+
+                // Close navigation if clicking outside
+                if (!isClickInsideNav && !isClickOnHamburger) {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                }
+
+                // Close all dropdowns if clicking outside
+                dropdowns.forEach((dropdown) => {
+                    const isClickOnDropdown = dropdown.contains(event.target);
+                    if (!isClickOnDropdown) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            });
+        </script>
+    
+        <!-- Search Bar -->
+        <div class="search">
+            <form action="#" method="get">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search..." name="search" required>
+                    <button type="submit" class="search-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+            <button class="mobile-search-button" aria-label="Toggle search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+        </div>
+
+        <div>
+            <a href="cart.html" class="cart-link">
+                <span class="item-count">0</span>
+                <i class="fas fa-shopping-cart"></i>
+            </a>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const itemCountSpan = document.querySelector(".item-count");
+                const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            
+                const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+                if (itemCountSpan) {
+                    itemCountSpan.textContent = totalItems;
+                }
+            });
+        </script>
+
+        <script>
+            // Toggle search bar on mobile
+            const mobileSearchButton = document.querySelector('.mobile-search-button');
+            const searchBar = document.querySelector('.search-bar');
+    
+            mobileSearchButton.addEventListener('click', () => {
+                searchBar.classList.toggle('active');
+                mobileSearchButton.classList.toggle('active');
+            });
+            // Close search bar when clicking outside
+            document.addEventListener('click', (event) => {
+            const isClickInsideSearchBar = searchBar.contains(event.target);
+            const isClickOnMobileButton = mobileSearchButton.contains(event.target);
+    
+            // If the click is outside the search bar and not on the mobile button
+            if (!isClickInsideSearchBar && !isClickOnMobileButton) {
+            searchBar.classList.remove('active'); // Close the search bar
+            mobileSearchButton.classList.remove('active'); // Show the mobile button
+           }
+           });
+        </script>
+    </header>
+
+    <main>
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section">
+            <h1>Frequently Asked Questions</h1>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <h3>What payment methods do you accept?</h3>
+                    <p>We accept all major credit cards, PayPal, and bank transfers.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How long does delivery take?</h3>
+                    <p>Shipping typically takes 3-5 business days within the country and 7-10 days internationally.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I return a product if I'm not satisfied?</h3>
+                    <p>Yes, we offer a 30-day return policy for all unused and unopened products.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Do you offer warranties on consoles?</h3>
+                    <p>Yes, all consoles come with a 1-year manufacturer's warranty.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How can I track my order?</h3>
+                    <p>You will receive a tracking number via email once your order is shipped.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Query Form Section -->
+        <section id="query-form" class="query-form-section">
+            <h1>Have a Question? Ask Us!</h1>
+            <form action="#" method="post" class="contact-form">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </section>
+    </main>
+    <!-- Footer Section-->
+    <footer>
+        <div class="footer-content">
+            <!-- Left Side: Sections -->
+            <div class="footer-sections">
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li>Email: toxicgamers@gmail.com</li>
+                        <li>Phone: +94 (81) 999 9999</li>
+                        <li>Address: 123 ,KCC,Kandy.</li>
+                    </ul>
+                </div>
+    
+                <!-- Sitemap -->
+                <div class="footer-section">
+                    <h3>Sitemap</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="upcoming.html">Upcoming Games</a></li>
+                        <li><a href="accessories.html">Consoles</a></li>
+                        <li><a href="pca.html">Gaming Peripherals</a></li>
+                        <li><a href="products.html">Computer Parts</a></li>
+                        <li><a href="games.html">Games</a></li>
+                        <li><a href="queries.html">Queries & FAQ</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Legal -->
+                <div class="footer-section">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Follow Us On -->
+                <div class="footer-section">
+                    <h3>Follow Us On</h3>
+                    <ul class="social-links">
+                        <li><a href="#"><img src="./fb.png" alt="Facebook"></a></li>
+                        <li><a href="#"><img src="./Insta.png" alt="Instagram"></a></li>
+                        <li><a href="#"><img src="./x.png" alt="X"></a></li>
+                        <li><a href="#"><img src="./linkedin.png" alt="Linkedin"></a></li>                        
+                    </ul>
+                </div>
+            </div>
+            <!-- Footer Logo and Introduction -->
+            <div class="footer-logo">
+                 <div class="logo">
+                    <a href="index.html">
+                        <img src="./logo.png" alt="Gaming Logo">
+                    </a>
+                   <span class="website-name1">Toxic Gamers</span>
+                 </div>
+                   <p class="footer-intro">Your ultimate destination for the latest games, consoles, and accessories. Join the gaming revolution!</p>
+            </div>
+        </div>
+    
+        <!-- Copyright -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 Toxic Gamers. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
