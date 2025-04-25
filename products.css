@@ -299,6 +299,18 @@ nav {
     transform: translateY(-8px) rotate(-45deg);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
 /* Search Bar Styles */
 .search {
     position: relative;
